@@ -10,9 +10,8 @@
 
 - Implement comprehensive error handling for all potential errors.
 - Develop a Database class responsible for managing all interactions involving the CSV file.
-- Design a Contact class that inherits from a BaseModel class and implements an abstract method.
-- Establish enums to effectively manage various menu options.
-- Abstract utility functions into a dedicated file if they are deemed necessary.
+- Design a Contact class that models a contact
+- Create enum to handle menu options
 
 ### Installation
 
@@ -66,7 +65,7 @@
    ```
 5. Run program:
    ```
-   python3 src/index.py
+   python3 index.py
    ```
 
 ### Example Output
@@ -79,8 +78,7 @@ Please enter password: panda123
 1. List Contacts
 2. Add Contact
 3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
+4. Exit
 
 Option: 1
 
@@ -102,8 +100,7 @@ Relationship: Neighbor
 1. List Contacts
 2. Add Contact
 3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
+4. Exit
 
 Option: 2
 
@@ -115,59 +112,18 @@ Relationship: Aunt
 1. List Contacts
 2. Add Contact
 3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
+4. Exit
 
 Option: 3
 
-1. Remove by Name
-2. Remove by Phone Number
-3. Remove by Email
-
-Option: 3
-
-Email: dprottqg@nasa.gov
+Name: Dacy Prott
 
 Dropped Dacy Prott!
 
 1. List Contacts
 2. Add Contact
 3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
+4. Exit
 
 Option: 4
-
-Sorted by Name!
-
-1. List Contacts
-2. Add Contact
-3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
-
-Option: 1
-
-Name: Benny Sleath
-Phone Number: 676-865-7290
-Email: bsleathqe@cbc.ca
-Relationship: Friend
-
-Name: Cheston Bertelmot
-Phone Number: 373-901-9106
-Email: cbertelmotqf@cbsnews.com
-Relationship: Neighbor
-
-Name: Guillermo Beste
-Phone Number: 856-346-2331
-Email: gbesteqd@wordpress.com
-Relationship: Uncle
-
-1. List Contacts
-2. Add Contact
-3. Remove Contact
-4. Sort Contacts by Name
-5. Exit
-
-Option: 5
 ```

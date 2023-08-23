@@ -9,8 +9,7 @@ class MainOption(Enum):
     List = 1
     Add = 2
     Remove = 3
-    Sort = 4
-    Exit = 5
+    Exit = 4
 
 
 class Contact:
@@ -63,7 +62,7 @@ class Database:
 
     def __init__(self) -> None:
         try:
-            self.df = pd.read_csv("db/example.csv")
+            self.df = pd.read_csv("db.csv")
 
             for index in self.df.index:
                 contact = Contact()
@@ -93,30 +92,24 @@ class Database:
 
         # create new DataFrame and append it to file hence mode="a"
         df = pd.DataFrame(obj)
-        df.to_csv("db/example.csv", mode="a", index=False, header=False)
+        df.to_csv("db.csv", mode="a", index=False, header=False)
 
     # remove contact based on column and input
-    def removeContact(self, removeInput: str, column: str) -> str | None:
+    def removeContact(self, name: str) -> None:
         # using local DataFrame snapshot to grab rows that passed condition
-        localDf = self.df.loc[self.df[column] == removeInput]
+        localDf = self.df.loc[self.df["Name"] == name]
 
-        if localDf.empty:
-            return None
-        else:
+        if not localDf.empty:
             self.df.drop(localDf.index, inplace=True)
-            self.df.to_csv("db/example.csv", index=False)
+            self.df.to_csv("db.csv", index=False)
+            self.contacts = filter(lambda el: el.getName() != name, self.contacts)
 
             # cant use join unfortunately since its under localDf.index
             result = "Dropped "
             for index in localDf.index:
                 result += localDf["Name"][index]
 
-            return result + "!"
-
-    def sortByName(self):
-        self.contacts.sort(key=lambda el: el.getName())
-        self.df = self.df.sort_values(by=["Name"], ascending=True)
-        self.df.to_csv("db/example.csv", index=False)
+            print(result + "!")
 
 
 # STARTING POINT
@@ -164,8 +157,7 @@ try:
             print("1. List Contacts")
             print("2. Add Contact")
             print("3. Remove Contact")
-            print("4. Sort Contacts By Name")
-            print("5. Exit\n")
+            print("4. Exit\n")
 
             userInput = int(input("Option: "))
             option = MainOption(userInput)
@@ -173,6 +165,7 @@ try:
             print("Invalid option try again!\n")
             continue
 
+        print()
         match option:
             case MainOption.List:
                 for contact in db.getContacts():
@@ -187,8 +180,7 @@ try:
                 print()
             case MainOption.Remove:
                 userInput = input("Name: ")
-            case MainOption.Sort:
-                db.sortByName()
+                db.removeContact(userInput)
             case other:
                 break
 except KeyboardInterrupt:

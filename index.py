@@ -16,10 +16,10 @@ class MainOption(Enum):
 @dataclass
 class Contact:
 
-    name: str
-    phoneNumber: str
-    email: str
-    relationship: str
+    name: str = ''
+    phoneNumber: str = ''
+    email: str = ''
+    relationship: str = ''
 
     def __str__(self) -> str:
 
